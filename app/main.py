@@ -1,7 +1,7 @@
 # from jnius import autoclass
 from kivy.app import App
 from kivy.uix.button import Button
-# from plyer import battery
+from plyer import battery
 
 class MainApp(App):
     def build(self):
