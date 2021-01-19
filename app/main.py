@@ -1,15 +1,10 @@
-from jnius import autoclass
+# from jnius import autoclass
 from kivy.app import App
 from kivy.uix.button import Button
-from plyer import battery
-
-
-
+# from plyer import battery
 
 class MainApp(App):
     def build(self):
-
-
         button = Button(text='Hello from Kivy',
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
