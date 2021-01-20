@@ -2,6 +2,11 @@ from kivy.app import App
 from kivy.uix.button import Button
 from jnius import autoclass
 
+def insert_newlines(string, every=32):
+    lines = []
+    for i in range(0, len(string), every):
+        lines.append(string[i:i+every])
+    return '\n'.join(lines)
 
 class MainApp(App):
     def build(self):
@@ -12,7 +17,9 @@ class MainApp(App):
         except Exception as e:
             str_var = str(e)
 
-        button = Button(text=str_var,
+
+
+        button = Button(text=insert_newlines(str_var),
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
