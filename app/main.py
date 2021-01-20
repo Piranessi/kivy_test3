@@ -13,7 +13,7 @@ class MainApp(App):
         str_var = "all ok2"
         bt = autoclass('android.bluetooth.BluetoothAdapter')
         try:
-            bt_adapter = bt.getAdapter()
+            bt_adapter = bt.getDefaultAdapter()
         except Exception as e:
             str_var = str(e)
 
