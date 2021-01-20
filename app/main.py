@@ -3,6 +3,7 @@ from kivy.app import App
 from kivy.uix.button import Button
 from plyer import bluetooth
 from jnius import autoclass
+import android
 
 PythonActivity = autoclass('org.renpy.android.PythonActivity')
 activity = PythonActivity.mActivity
