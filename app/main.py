@@ -8,7 +8,7 @@ class MainApp(App):
         bt = autoclass('android.bluetooth.BluetoothManager')
         bt_adapter = bt.BluetoothAdapter.getDefaultAdapter()
 
-        button = Button(text='test2',
+        button = Button(text='test23',
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
