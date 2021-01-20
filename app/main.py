@@ -6,7 +6,7 @@ from jnius import autoclass
 class MainApp(App):
     def build(self):
         str_var = "all ok2"
-        bt = autoclass('android.bluetooth.BluetoothManager')
+        bt = autoclass('android.bluetooth.BluetoothAdapter')
         try:
             bt_adapter = bt.getAdapter()
         except Exception as e:
