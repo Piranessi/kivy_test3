@@ -6,7 +6,7 @@ from jnius import autoclass
 class MainApp(App):
     def build(self):
         bt = autoclass('android.bluetooth.BluetoothManager')
-        bt_adapter = bt.BluetoothAdapter.getDefaultAdapter()
+        bt_adapter = bt.getAdapter()
 
         button = Button(text='test23',
                       size_hint=(.5, .5),
