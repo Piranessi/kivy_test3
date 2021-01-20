@@ -5,10 +5,14 @@ from jnius import autoclass
 
 class MainApp(App):
     def build(self):
+        str_var = "all ok"
         bt = autoclass('android.bluetooth.BluetoothManager')
-        # bt_adapter = bt.getAdapter()
+        try:
+            bt_adapter = bt.getAdapter()
+        except Exception as e:
+            str_var = str(e)
 
-        button = Button(text='test23',
+        button = Button(text=str_var,
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
