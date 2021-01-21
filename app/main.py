@@ -18,10 +18,8 @@ def insert_newlines(string, every=32):
 
 def get_socket_stream(name):
     paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
-    socket = None
-
     str_var = str(paired_devices)
-
+    #socket = None
     # for device in paired_devices:
     #     if device.getName() == name:
     #         socket = device.createRfcommSocketToServiceRecord(
@@ -31,15 +29,14 @@ def get_socket_stream(name):
     #         break
     # socket.connect()
     # return recv_stream, send_stream
-    pass
 
 class MainApp(App):
     def build(self):
 
-        # try:
-        #     get_socket_stream("test")
-        # except Exception as e:
-        #     str_var = traceback.format_exc()
+        try:
+            get_socket_stream()
+        except Exception as e:
+            str_var = traceback.format_exc()
 
         button = Button(text=insert_newlines(str_var),
                       size_hint=(.5, .5),
