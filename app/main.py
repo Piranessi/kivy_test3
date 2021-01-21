@@ -18,7 +18,7 @@ def insert_newlines(string, every=32):
 
 def get_socket_stream():
     #paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
-    str_var = 'wtf?'
+    # str_var = 'wtf?'
     # str_var = str(paired_devices)
     #socket = None
     # for device in paired_devices:
@@ -30,6 +30,7 @@ def get_socket_stream():
     #         break
     # socket.connect()
     # return recv_stream, send_stream
+    pass
 
 class MainApp(App):
     def build(self):
