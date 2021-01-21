@@ -7,8 +7,6 @@ BluetoothAdapter = autoclass('android.bluetooth.BluetoothAdapter')
 BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
 UUID = autoclass('java.util.UUID')
-str_var = "all g"
-
 
 def insert_newlines(string, every=32):
     if len(string) > 32:
@@ -37,6 +35,7 @@ def insert_newlines(string, every=32):
 
 class MainApp(App):
     def build(self):
+        str_var = "all g"
 
         try:
             a = 5
@@ -44,7 +43,7 @@ class MainApp(App):
             str_var = traceback.format_exc()
 
         # str_var = insert_newlines(str_var)
-        button = Button(text=str(str_var),
+        button = Button(text=str_var,
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
