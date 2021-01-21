@@ -20,37 +20,34 @@ def insert_newlines(string, every=32):
 
 
 def get_socket_stream():
-    paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
+    bt_adapter = BluetoothAdapter.getDefaultAdapter()
+    # paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
     res = ''
     socket = None
 
-    if paired_devices is not None:
-        for device in paired_devices:
-            res += str(device.getName())
-            if device.getName() == 'Mi True Wireless EBs Basic_R':
-                socket = device.createRfcommSocketToServiceRecord(UUID.fromString('00001101-0000-1000-8000-00805F9B34FB'))
-
-                recv_stream = socket.getInputStream()
-                send_stream = socket.getOutputStream()
-
-                socket.connect()
-
+    if bt_adapter is not None:
+        pass
     else:
-        res = 'empty'
+        pass
+
+
+
+    # if paired_devices is not None:
+    #     for device in paired_devices:
+    #         res += str(device.getName())
+    #         if device.getName() == 'Mi True Wireless EBs Basic_R':
+    #             socket = device.createRfcommSocketToServiceRecord(UUID.fromString('00001101-0000-1000-8000-00805F9B34FB'))
+    #
+    #             recv_stream = socket.getInputStream()
+    #             send_stream = socket.getOutputStream()
+    #
+    #             socket.connect()
+
+    # else:
+    #     res = 'empty'
 
     return res
 
-    #socket = None
-    # for device in paired_devices:
-    #     if device.getName() == name:
-    #         socket = device.createRfcommSocketToServiceRecord(UUID.randomUUID())
-    #             fromString("00001101-0000-1000-8000-00805F9B34FB"))
-    #         recv_stream = socket.getInputStream()
-    #         send_stream = socket.getOutputStream()
-    #         break
-    # socket.connect()
-    # return recv_stream, send_stream
-    #pass
 
 # def callback(instance):
 #     print('test', instance.text)
