@@ -28,10 +28,12 @@ def get_socket_stream():
         for device in paired_devices:
             res += str(device.getName())
             if device.getName() == 'Mi True Wireless EBs Basic_R':
-                socket = device.createRfcommSocketToServiceRecord(UUID.randomUUID())
-                socket.connect()
+                socket = device.createRfcommSocketToServiceRecord(UUID.fromString('00001101-0000-1000-8000-00805F9B34FB'))
+
                 recv_stream = socket.getInputStream()
                 send_stream = socket.getOutputStream()
+
+                socket.connect()
 
     else:
         res = 'empty'
