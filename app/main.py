@@ -8,7 +8,7 @@ BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
 UUID = autoclass('java.util.UUID')
 
-str_var = "all ok"
+
 
 def insert_newlines(string, every=32):
     lines = []
@@ -36,8 +36,7 @@ class MainApp(App):
     def build(self):
 
         try:
-            # get_socket_stream()
-            pass
+            a = 5
         except Exception as e:
             str_var = traceback.format_exc()
 
