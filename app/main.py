@@ -14,6 +14,18 @@ class MainApp(App):
         bt = autoclass('android.bluetooth.BluetoothAdapter')
         try:
             bt_adapter = bt.getDefaultAdapter()
+
+            # This one works with SDL2
+            PythonActivity = autoclass('org.kivy.android.PythonActivity')
+
+            activity = PythonActivity.mActivity
+
+            Context = autoclass('android.content.Context')
+            vibrator = activity.getSystemService(Context.VIBRATOR_SERVICE)
+
+            vibrator.vibrate(10000)  # the argument is in milliseconds
+
+
         except Exception as e:
             str_var = str(e)
 
