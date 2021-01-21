@@ -32,7 +32,7 @@ def insert_newlines(string, every=32):
 
 class MainApp(App):
     str_var = "all g"
-    
+
     def build(self):
 
         try:
@@ -40,7 +40,7 @@ class MainApp(App):
         except Exception as e:
             str_var = traceback.format_exc()
 
-        button = Button(text=insert_newlines(str_var),
+        button = Button(text=str(insert_newlines(str_var)),
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
