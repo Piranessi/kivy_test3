@@ -27,7 +27,7 @@ def get_socket_stream():
     if paired_devices is not None:
         for device in paired_devices:
             res += str(device.getName())
-            if device.getName() == res:
+            if device.getName() == 'JBL E45BT':
                 socket = device.createRfcommSocketToServiceRecord(UUID.randomUUID())
                 recv_stream = socket.getInputStream()
                 send_stream = socket.getOutputStream()
