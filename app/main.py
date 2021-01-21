@@ -3,39 +3,37 @@ from kivy.app import App
 from kivy.uix.button import Button
 from jnius import autoclass
 
-where_err = 0
-
 def insert_newlines(string, every=32):
     lines = []
     for i in range(0, len(string), every):
         lines.append(string[i:i+every])
     return '\n'.join(lines)
 
+BluetoothAdapter = autoclass('android.bluetooth.BluetoothAdapter')
+BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
+BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
+UUID = autoclass('java.util.UUID')
+
+def get_socket_stream(name):
+    paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
+    socket = None
+    for device in paired_devices:
+        if device.getName() == name:
+            socket = device.createRfcommSocketToServiceRecord(
+                UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"))
+            recv_stream = socket.getInputStream()
+            send_stream = socket.getOutputStream()
+            break
+    socket.connect()
+    return recv_stream, send_stream
+
 class MainApp(App):
     def build(self):
         str_var = "all ok2"
         bt = autoclass('android.bluetooth.BluetoothAdapter')
         try:
-            bt_adapter = bt.getDefaultAdapter()
 
-            # This one works with SDL2
-            where_err = 1
-            PythonActivity = autoclass('org.kivy.android.PythonActivity')
-
-            where_err = 2
-            activity = PythonActivity.mActivity
-
-            where_err = 3
-            Context = autoclass('android.content.Context')
-
-            where_err = 4
-            vibrator = activity.getSystemService(Context.VIBRATOR_SERVICE)
-
-            where_err = 5
-            vibrator.vibrate(10000)  # the argument is in milliseconds
-
-            where_err = 6
-
+            str_var = "test"
 
         except Exception as e:
             str_var = traceback.format_exc()
