@@ -30,8 +30,8 @@ def get_socket_stream():
             if device.getName() == 'Mi True Wireless EBs Basic_R':
                 socket = device.createInsecureRfcommSocketToServiceRecord(UUID.fromString('00001101-0000-1000-8000-00805F9B34FB'))
 
-                recv_stream = socket.getInputStream()
-                send_stream = socket.getOutputStream()
+                # recv_stream = socket.getInputStream()
+                # send_stream = socket.getOutputStream()
 
                 socket.connect()
 
