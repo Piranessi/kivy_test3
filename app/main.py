@@ -6,7 +6,7 @@ from jnius import autoclass
 BluetoothAdapter = autoclass('android.bluetooth.BluetoothAdapter')
 BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
-ParcelUuid = autoclass('java.util.ParcelUuid')
+UUID = autoclass('java.util.UUID')
 
 
 def insert_newlines(string, every=32):
@@ -28,10 +28,10 @@ def get_socket_stream():
         for device in paired_devices:
             res += str(device.getName())
             if device.getName() == 'Mi True Wireless EBs Basic_R':
-                socket = device.createInsecureRfcommSocketToServiceRecord(ParcelUuid.fromString('0000112f-0000-1000-8000-00805f9b34fb'))
+                socket = device.createInsecureRfcommSocketToServiceRecord(UUID.fromString('0000112f-0000-1000-8000-00805f9b34fb'))
 
-                # recv_stream = socket.getInputStream()
-                # send_stream = socket.getOutputStream()
+                recv_stream = socket.getInputStream()
+                send_stream = socket.getOutputStream()
 
                 socket.connect()
 
