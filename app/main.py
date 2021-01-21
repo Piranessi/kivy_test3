@@ -7,14 +7,17 @@ BluetoothAdapter = autoclass('android.bluetooth.BluetoothAdapter')
 BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
 UUID = autoclass('java.util.UUID')
-
 str_var = "all g"
 
+
 def insert_newlines(string, every=32):
-    lines = []
-    for i in range(0, len(string), every):
-        lines.append(string[i:i+every])
-    return '\n'.join(lines)
+    if len(string) > 32:
+        lines = []
+        for i in range(0, len(string), every):
+            lines.append(string[i:i+every])
+        return '\n'.join(lines)
+    else:
+        return string
 
 # def get_socket_stream():
 #     #paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
@@ -36,13 +39,12 @@ class MainApp(App):
     def build(self):
 
         try:
-            str_var = 4/0
-            # str_var = str(insert_newlines(self.str_var))
+            a = 5
         except Exception as e:
             str_var = traceback.format_exc()
 
 
-        button = Button(text=str_var,
+        button = Button(text=insert_newlines(str_var),
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
