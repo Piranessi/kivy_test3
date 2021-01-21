@@ -8,6 +8,7 @@ BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
 UUID = autoclass('java.util.UUID')
 
+str_var = "all g"
 
 def insert_newlines(string, every=32):
     lines = []
@@ -39,7 +40,7 @@ class MainApp(App):
         except Exception as e:
             str_var = traceback.format_exc()
 
-        button = Button(text='test',
+        button = Button(text=insert_newlines(str_var),
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
