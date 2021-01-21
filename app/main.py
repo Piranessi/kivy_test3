@@ -48,6 +48,9 @@ def get_socket_stream():
     # return recv_stream, send_stream
     #pass
 
+def callback(instance):
+    print('test', instance.text)
+
 class MainApp(App):
     def build(self):
         str_var = "all g"
@@ -61,6 +64,7 @@ class MainApp(App):
         button = Button(text=str_var,
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
+        button.bind(on_press=callback)
 
         return button
 
