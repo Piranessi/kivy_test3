@@ -35,7 +35,7 @@ class MainApp(App):
 
 
         except Exception as e:
-            str_var = str(str(where_err)+e)
+            str_var = str(where_err) + str(e)
 
 
 
