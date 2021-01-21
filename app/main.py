@@ -19,8 +19,7 @@ def insert_newlines(string, every=32):
 
 def get_socket_stream():
     paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
-    # str_var = 'wtf?'
-    # str_var = str(paired_devices)
+    return str(paired_devices)
     #socket = None
     # for device in paired_devices:
     #     if device.getName() == name:
@@ -31,14 +30,14 @@ def get_socket_stream():
     #         break
     # socket.connect()
     # return recv_stream, send_stream
-    pass
+    #pass
 
 class MainApp(App):
     def build(self):
         str_var = "all g"
 
         try:
-            get_socket_stream()
+            str_var = get_socket_stream()
         except Exception as e:
             str_var = traceback.format_exc()
 
