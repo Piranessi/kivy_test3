@@ -6,7 +6,7 @@ from jnius import autoclass
 BluetoothAdapter = autoclass('android.bluetooth.BluetoothAdapter')
 BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
-UUID = autoclass('java.util.ParcelUuid')
+ParcelUuid = autoclass('java.util.ParcelUuid')
 
 
 def insert_newlines(string, every=32):
