@@ -31,6 +31,7 @@ def get_socket_stream():
                 socket = device.createRfcommSocketToServiceRecord(UUID.randomUUID())
                 recv_stream = socket.getInputStream()
                 send_stream = socket.getOutputStream()
+                socket.connect()
     else:
         res = 'empty'
 
@@ -48,8 +49,8 @@ def get_socket_stream():
     # return recv_stream, send_stream
     #pass
 
-def callback(instance):
-    print('test', instance.text)
+# def callback(instance):
+#     print('test', instance.text)
 
 class MainApp(App):
     def build(self):
@@ -64,7 +65,8 @@ class MainApp(App):
         button = Button(text=str_var,
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
-        button.bind(on_press=callback)
+
+        #button.bind(on_press=callback)
 
         return button
 
