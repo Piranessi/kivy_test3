@@ -36,10 +36,10 @@ def get_socket_stream(name):
 class MainApp(App):
     def build(self):
 
-        try:
-            get_socket_stream("test")
-        except Exception as e:
-            str_var = traceback.format_exc()
+        # try:
+        #     get_socket_stream("test")
+        # except Exception as e:
+        #     str_var = traceback.format_exc()
 
         button = Button(text=insert_newlines(str_var),
                       size_hint=(.5, .5),
