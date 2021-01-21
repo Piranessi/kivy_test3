@@ -41,7 +41,7 @@ class MainApp(App):
             str_var = traceback.format_exc()
 
         str_var = str(insert_newlines(str_var))
-        button = Button(text="test",
+        button = Button(text=str_var,
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
