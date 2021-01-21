@@ -19,11 +19,16 @@ def insert_newlines(string, every=32):
 
 def get_socket_stream():
     paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
+    res = ''
 
     if paired_devices is not None:
-        return 'not empty'
+        for device in paired_devices:
+           res += str(device.getName())
     else:
-        return 'empty'
+        res = 'empty'
+
+    return res
+
     #socket = None
     # for device in paired_devices:
     #     if device.getName() == name:
