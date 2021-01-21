@@ -8,7 +8,7 @@ BluetoothDevice = autoclass('android.bluetooth.BluetoothDevice')
 BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
 UUID = autoclass('java.util.UUID')
 
-str_var = "all g"
+str_var = "all g                  1235456345645764575675675656756757567567565676                        test"
 
 def insert_newlines(string, every=32):
     lines = []
