@@ -36,7 +36,7 @@ class MainApp(App):
     def build(self):
 
         try:
-            str_var = "asd"
+            str_var = 4/0
             # str_var = str(insert_newlines(self.str_var))
         except Exception as e:
             str_var = traceback.format_exc()
