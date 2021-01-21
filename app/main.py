@@ -33,6 +33,8 @@ class MainApp(App):
             where_err = 5
             vibrator.vibrate(10000)  # the argument is in milliseconds
 
+            where_err = 6
+
 
         except Exception as e:
             str_var = str(where_err) + str(e)
