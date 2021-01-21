@@ -1,3 +1,4 @@
+import traceback
 from kivy.app import App
 from kivy.uix.button import Button
 from jnius import autoclass
@@ -37,7 +38,7 @@ class MainApp(App):
 
 
         except Exception as e:
-            str_var = str(where_err) + str(e)
+            str_var = traceback.format_exc()
 
 
 
