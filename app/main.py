@@ -36,7 +36,8 @@ class MainApp(App):
     def build(self):
 
         try:
-            get_socket_stream()
+            # get_socket_stream()
+            pass
         except Exception as e:
             str_var = traceback.format_exc()
 
