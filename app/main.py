@@ -38,7 +38,7 @@ class MainApp(App):
         str_var = "all g"
 
         try:
-            a = 5
+            a = 5/0
         except Exception as e:
             str_var = traceback.format_exc()
 
