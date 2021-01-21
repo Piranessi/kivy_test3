@@ -43,8 +43,8 @@ class MainApp(App):
         except Exception as e:
             str_var = traceback.format_exc()
 
-
-        button = Button(text=insert_newlines(str_var),
+        str_var = insert_newlines(str_var)
+        button = Button(text=str_var,
                       size_hint=(.5, .5),
                       pos_hint={'center_x': .5, 'center_y': .5})
 
