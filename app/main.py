@@ -9,6 +9,7 @@ BluetoothSocket = autoclass('android.bluetooth.BluetoothSocket')
 InputStreamReader = autoclass('java.io.InputStreamReader')
 BufferedReader = autoclass('java.io.BufferedReader')
 UUID = autoclass('java.util.UUID')
+defaultCharBufferSize = 8192  # default Oracle value
 
 
 def insert_newlines(string, every=32):
@@ -22,24 +23,39 @@ def insert_newlines(string, every=32):
 
 
 def get_socket_stream():
-    paired_devices = BluetoothAdapter.getDefaultAdapter().getBondedDevices().toArray()
     res = ''
-    socket = None
+    device_name = 'Mi True Wireless EBs Basic_R'
+    bt_adapter = BluetoothAdapter.getDefaultAdapter()
 
-    if paired_devices is not None:
-        for device in paired_devices:
-            res += str(device.getName())
-            if device.getName() == 'Mi True Wireless EBs Basic_R':
-                socket = device.createInsecureRfcommSocketToServiceRecord(UUID.fromString('0000112f-0000-1000-8000-00805f9b34fb'))
-
-                recv_stream = socket.getInputStream()
-                send_stream = socket.getOutputStream()
-
-                socket.connect()
-
-    else:
-        res = 'empty'
-
+    if bt_adapter is not None:
+        if bt_adapter.isEnabled():
+            paired_devices = bt_adapter.getBondedDevices().toArray()
+            rfcomm_socket = None
+            if paired_devices is not None:
+                for device in paired_devices:
+                    res += str(device.getName()) #debug line
+                    if device.getName() == device_name:
+                        if device.bluetoothEnabled:
+                            rfcomm_socket = device.createRfcommSocketToServiceRecord(UUID.fromString('0000112f-0000-1000-8000-00805f9b34fb'))
+                            if rfcomm_socket is not None:
+                                try:
+                                    if rfcomm_socket.port <= 0:
+                                        rfcomm_socket = device.createRfcommSocket(1)  # set the port explicitly
+                                        if not rfcomm_socket.connected:
+                                            rfcomm_socket.connect()
+                                    else:
+                                        if not rfcomm_socket.connected:
+                                            rfcomm_socket.connect()
+                                    if rfcomm_socket.connected:
+                                        res = '[b]Connected[/b]'
+                                except Exception as e:
+                                    res = traceback.format_exc()
+                                if rfcomm_socket.connected:
+                                    reader = InputStreamReader(rfcomm_socket.getInputStream(), 'utf8')
+                                    recv_stream = BufferedReader(reader, defaultCharBufferSize)
+                                    send_stream = rfcomm_socket.getOutputStream()
+            else:
+                res = 'empty'
     return res
 
 
