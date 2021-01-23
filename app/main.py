@@ -30,7 +30,7 @@ class MainApp(App):
         except Exception as e:
             self.debug_str = traceback.format_exc()
 
-        str_var = insert_newlines(self.debug_str)
+        self.debug_str = insert_newlines(self.debug_str)
         button = Button(text=self.debug_str,
                         on_release=UrlRequest(url="https://www.olx.pl"),
                         size_hint=(.5, .5),
