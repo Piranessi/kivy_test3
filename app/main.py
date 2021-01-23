@@ -23,7 +23,7 @@ class MainApp(App):
 
     def build(self):
         try:
-            req = UrlRequest(url="https://www.olx.pl",on_success=self.update_global_str_var("success"))
+            req = UrlRequest(url="https://www.olx.pl")
             # soup = BeautifulSoup()
             # str_var = soup.title.string
         except Exception as e:
@@ -31,8 +31,9 @@ class MainApp(App):
 
         str_var = insert_newlines(str_var)
         button = Button(text=str_var,
-                      size_hint=(.5, .5),
-                      pos_hint={'center_x': .5, 'center_y': .5})
+                        on_release=UrlRequest(url="https://www.olx.pl"),
+                        size_hint=(.5, .5),
+                        pos_hint={'center_x': .5, 'center_y': .5})
         return button
 
 
