@@ -31,8 +31,9 @@ class MainApp(App):
             self.debug_str = traceback.format_exc()
 
         self.debug_str = insert_newlines(self.debug_str)
+
+        # on_release=UrlRequest(url="https://www.olx.pl"),
         button = Button(text=self.debug_str,
-                        on_release=UrlRequest(url="https://www.olx.pl"),
                         size_hint=(.5, .5),
                         pos_hint={'center_x': .5, 'center_y': .5})
         return button
