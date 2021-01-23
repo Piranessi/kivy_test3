@@ -26,11 +26,12 @@ class MainApp(App):
             req = UrlRequest(url="https://www.olx.pl")
             # soup = BeautifulSoup()
             # str_var = soup.title.string
+            self.debug_str = req.result
         except Exception as e:
-            str_var = traceback.format_exc()
+            self.debug_str = traceback.format_exc()
 
-        str_var = insert_newlines(str_var)
-        button = Button(text=str_var,
+        str_var = insert_newlines(self.debug_str)
+        button = Button(text=self.debug_str,
                         on_release=UrlRequest(url="https://www.olx.pl"),
                         size_hint=(.5, .5),
                         pos_hint={'center_x': .5, 'center_y': .5})
