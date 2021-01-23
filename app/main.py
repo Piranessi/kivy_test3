@@ -1,6 +1,5 @@
 import traceback
 from kivy.network.urlrequest import UrlRequest
-from bs4 import BeautifulSoup
 from kivy.app import App
 from kivy.uix.button import Button
 
@@ -17,23 +16,28 @@ def insert_newlines(string, every=32):
 
 class MainApp(App):
     debug_str = 'init'
+    result = None
 
-    def update_global_str_var(self, str_val):
-        self.debug_str = str_val
+    # parse in wifiname, wifipassword (with space atm crash), add encryption
+    def run_url_request_setup_device(self, *args):
+        wifi_name = r'test_wifi'
+        wifi_password = r"test_password"
+        device_address = r'http://51.195.119.86/setup.php'
+        url_str = device_address + '?wifi_name=' + wifi_name  + r"&wifi_password=" + wifi_password
+        self.result = UrlRequest(url=url_str,
+                                 on_success=print('Instalacja urzadzenia zakonczona.'),
+                                 on_error='Sprawdz polaczenie wifi z urzadzeniem.')
 
     def build(self):
-        try:
-            req = UrlRequest(url="https://www.olx.pl")
-            # soup = BeautifulSoup()
-            # str_var = soup.title.string
-
-            # self.debug_str = req.result
-        except Exception as e:
-            self.debug_str = traceback.format_exc()
+        # try:
+        #     self.run_url_request()
+        #     self.debug_str = str(self.result)
+        # except Exception as e:
+        #     self.debug_str = traceback.format_exc()
 
         self.debug_str = insert_newlines(self.debug_str)
         button = Button(text=self.debug_str,
-                        on_release=UrlRequest(url="https://www.olx.pl"),
+                        on_release=self.run_url_request_setup_device,
                         size_hint=(.5, .5),
                         pos_hint={'center_x': .5, 'center_y': .5})
         return button
