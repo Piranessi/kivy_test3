@@ -1,6 +1,6 @@
 import traceback
 import urllib2
-# from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup
 from kivy.app import App
 from kivy.uix.button import Button
 
@@ -18,11 +18,11 @@ def insert_newlines(string, every=32):
 class MainApp(App):
     def build(self):
         str_var = 'init'
-        # try:
-        #     soup = BeautifulSoup(urllib2.urlopen("https://www.olx.pl"))
-        #     str_var = soup.title.string
-        # except Exception as e:
-        #     str_var = traceback.format_exc()
+        try:
+            soup = BeautifulSoup(urllib2.urlopen("https://www.olx.pl"))
+            str_var = soup.title.string
+        except Exception as e:
+            str_var = traceback.format_exc()
 
         str_var = insert_newlines(str_var)
         button = Button(text=str_var,
