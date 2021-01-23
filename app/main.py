@@ -1,6 +1,6 @@
-import traceback
-import urllib2
-from bs4 import BeautifulSoup
+# import traceback
+# import urllib2
+# from bs4 import BeautifulSoup
 from kivy.app import App
 from kivy.uix.button import Button
 
