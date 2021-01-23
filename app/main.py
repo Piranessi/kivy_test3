@@ -19,8 +19,9 @@ class MainApp(App):
     def build(self):
         str_var = 'init'
         try:
-            soup = BeautifulSoup(UrlRequest("https://www.olx.pl"))
-            str_var = soup.title.string
+            UrlRequest("https://www.olx.pl")
+            # soup = BeautifulSoup()
+            # str_var = soup.title.string
         except Exception as e:
             str_var = traceback.format_exc()
 
