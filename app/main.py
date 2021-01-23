@@ -26,7 +26,8 @@ class MainApp(App):
             req = UrlRequest(url="https://www.olx.pl")
             # soup = BeautifulSoup()
             # str_var = soup.title.string
-            self.debug_str = req.result
+            
+            # self.debug_str = req.result
         except Exception as e:
             self.debug_str = traceback.format_exc()
 
