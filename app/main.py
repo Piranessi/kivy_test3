@@ -1,8 +1,13 @@
-import traceback
-import urllib2
-from bs4 import BeautifulSoup
-from kivy.app import App
-from kivy.uix.button import Button
+try:
+    import urllib2
+    from bs4 import BeautifulSoup
+    from kivy.app import App
+    from kivy.uix.button import Button
+    import traceback
+except Exception as e:
+    str_var = traceback.format_exc()
+
+
 
 
 def insert_newlines(string, every=32):
