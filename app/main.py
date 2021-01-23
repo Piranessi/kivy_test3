@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 from kivy.app import App
 from kivy.uix.button import Button
 
+str_var = 'init'
+
 
 def insert_newlines(string, every=32):
     if len(string) > 32:
@@ -15,11 +17,14 @@ def insert_newlines(string, every=32):
         return string
 
 
+def update_global_str_var(str_val):
+    str_var = str_val
+
+
 class MainApp(App):
     def build(self):
-        str_var = 'init'
         try:
-            UrlRequest("https://www.olx.pl")
+            req = UrlRequest(url="https://www.olx.pl",on_success=update_global_str_var("success"))
             # soup = BeautifulSoup()
             # str_var = soup.title.string
         except Exception as e:
