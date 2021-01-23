@@ -18,8 +18,8 @@ def insert_newlines(string, every=32):
 class MainApp(App):
     debug_str = 'init'
 
-    def update_global_str_var(self, str_val):
-        self.debug_str = str_val
+    # def update_global_str_var(self, str_val):
+    #     self.debug_str = str_val
 
     def build(self):
         try:
