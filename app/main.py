@@ -33,6 +33,9 @@ class MainApp(App):
         try:
             s.connect((ip,port))
             s.send(encoded_msg)
+            data = s.recv(1024)
+            decoded_data = data.decode("utf-8")
+            print(decoded_data + " to odebralem")
             s.close()
             self.button.text = 'msg sent, connection closed'
         except Exception as e:
