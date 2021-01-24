@@ -26,6 +26,7 @@ class MainApp(App):
         url_str = device_address + '?wifi_name=' + wifi_name  + r"&wifi_password=" + wifi_password
         self.result = UrlRequest(url=url_str,
                                  on_success=print('Instalacja urzadzenia zakonczona.'),
+                                 req_body='test-req_body',
                                  on_error='Sprawdz polaczenie wifi z urzadzeniem.')
 
     def build(self):
