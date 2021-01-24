@@ -27,7 +27,8 @@ class MainApp(App):
         self.result = UrlRequest(url=url_str,
                                  on_success=print('Instalacja urzadzenia zakonczona.'),
                                  req_body='test-req_body',
-                                 on_error='Sprawdz polaczenie wifi z urzadzeniem.')
+                                 on_error='Sprawdz polaczenie wifi z urzadzeniem.',
+                                 req_header='test')
 
     def build(self):
         # try:
