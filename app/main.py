@@ -26,12 +26,13 @@ class MainApp(App):
     def run_url_request_setup_device(self, *args):
         self.button.text = 'run_url_request_setup_device: init'
         try:
-
+            msg='test msg'
+            encoded_msg = bytes(msg, "utf-8")
             s = socket.socket()
             ip = '192.168.4.1'
             port = 80
             s.connect((ip,port))
-            s.send(43)
+            s.send(encoded_msg)
             s.close()
 
             wifi_name = r'test_wifi'
