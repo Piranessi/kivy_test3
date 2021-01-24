@@ -31,7 +31,7 @@ class MainApp(App):
             ip = '192.168.4.1'
             port = '80'
             s.connect((ip,port))
-            s.send('test')
+            s.send(43)
             s.close()
 
             wifi_name = r'test_wifi'
