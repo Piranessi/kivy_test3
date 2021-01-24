@@ -16,15 +16,22 @@ def insert_newlines(string, every=32):
 
 class MainApp(App):
     debug_str = 'init'
-    result = None
+    result = 'init2'
+    button = None
 
     def do_nothing(self):
         pass
+
+    def button_on_error(self,*args):
+        self.button.text = 'connection error'
+
 
     # parse in wifiname, wifipassword (with space atm crash), add encryption
     def run_url_request_setup_device(self, *args):
         res = 'init'
         try:
+            headers = {'Content-type': 'application/x-www-form-urlencoded',
+                       'Accept': 'text/plain'}
             wifi_name = r'test_wifi'
             wifi_password = r"test_password"
             device_address = r'http://192.168.4.1:80/'
@@ -32,19 +39,25 @@ class MainApp(App):
             self.result = UrlRequest(url=url_str,
                                      on_success=print('Instalacja urzadzenia zakonczona.'),
                                      req_body='test-req_body',
-                                     on_error='test____',
-                                     req_header='test_req_header')
+                                     on_error=self.button_on_error,
+                                     req_headers=headers)
             res = 'ok'
         except Exception as e:
             res = traceback.format_exc()
+        return res
+
+    def update_button_text_with_urlrequest_result(self, *args):
+        self.result = self.run_url_request_setup_device()
+        self.debug_str = insert_newlines(self.result)
+        self.button.text = self.debug_str
 
     def build(self):
         self.debug_str = insert_newlines(self.debug_str)
-        button = Button(text=self.debug_str,
-                        on_release=self.run_url_request_setup_device,
+        self.button = Button(text=self.debug_str,
+                        on_release=self.update_button_text_with_urlrequest_result,
                         size_hint=(.5, .5),
                         pos_hint={'center_x': .5, 'center_y': .5})
-        return button
+        return self.button
 
 
 if __name__ == '__main__':
