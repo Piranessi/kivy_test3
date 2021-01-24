@@ -2,6 +2,7 @@ import traceback
 from kivy.network.urlrequest import UrlRequest
 from kivy.app import App
 from kivy.uix.button import Button
+import socket
 
 
 def insert_newlines(string, every=32):
@@ -25,8 +26,14 @@ class MainApp(App):
     def run_url_request_setup_device(self, *args):
         self.button.text = 'run_url_request_setup_device: init'
         try:
-            headers = {'Content-type': 'application/x-www-form-urlencoded',
-                       'Accept': 'text/plain'}
+
+            s = socket.socket()
+            ip = '192.168.4.1'
+            port = '80'
+            s.connect((ip,port))
+            s.send('test')
+            s.close()
+
             wifi_name = r'test_wifi'
             wifi_password = r"test_password"
             device_address = r'http://192.168.4.1:80/'
@@ -34,8 +41,7 @@ class MainApp(App):
             self.result = UrlRequest(url=url_str,
                                      on_success=print('on_success.'),
                                      req_body='test-req_body',
-                                     on_error=self.button_on_error,
-                                     req_headers=headers)
+                                     on_error=self.button_on_error)
             self.button.text = 'run_url_request_setup_device: UrlRequest done'
         except Exception as e:
             self.button.text = insert_newlines(traceback.format_exc())
