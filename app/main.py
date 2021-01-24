@@ -22,7 +22,7 @@ class MainApp(App):
     def run_url_request_setup_device(self, *args):
         wifi_name = r'test_wifi'
         wifi_password = r"test_password"
-        device_address = r'192.168.4.1/'
+        device_address = r'http://192.168.4.1/'
         url_str = device_address + '?wifi_name=' + wifi_name  + r"&wifi_password=" + wifi_password
         self.result = UrlRequest(url=url_str,
                                  on_success=print('Instalacja urzadzenia zakonczona.'),
