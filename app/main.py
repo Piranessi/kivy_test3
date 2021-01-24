@@ -19,9 +19,6 @@ class MainApp(App):
     button = None
     result = None
 
-    def do_nothing(self):
-        pass
-
     def button_on_error(self,*args):
         self.button.text = 'connection error'
 
@@ -37,8 +34,8 @@ class MainApp(App):
             self.result = UrlRequest(url=url_str,
                                      on_success=print('on_success.'),
                                      req_body='test-req_body',
-                                     on_error=self.button_on_error)
-                                     #req_headers=headers)
+                                     on_error=self.button_on_error,
+                                     req_headers=headers)
             self.button.text = 'run_url_request_setup_device: UrlRequest done'
         except Exception as e:
             self.button.text = insert_newlines(traceback.format_exc())
