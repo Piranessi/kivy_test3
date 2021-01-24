@@ -23,33 +23,24 @@ class MainApp(App):
     def button_on_error(self,*args):
         self.button.text = 'connection error'
 
-    def run_url_request_setup_device(self, *args):
-        self.button.text = 'run_url_request_setup_device: init'
+    def setup_device(self, *args):
+        self.button.text = 'setup: init'
+        msg = 'test msg'
+        encoded_msg = bytes(msg, "utf-8")
+        s = socket.socket()
+        ip = '192.168.4.1'
+        port = 3000
         try:
-            msg='test msg'
-            encoded_msg = bytes(msg, "utf-8")
-            s = socket.socket()
-            ip = '192.168.4.1'
-            port = 80
             s.connect((ip,port))
             s.send(encoded_msg)
             s.close()
-
-            wifi_name = r'test_wifi'
-            wifi_password = r"test_password"
-            device_address = r'http://192.168.4.1:80/'
-            url_str = device_address + '?wifi_name=' + wifi_name + r"&wifi_password=" + wifi_password
-            self.result = UrlRequest(url=url_str,
-                                     on_success=print('on_success.'),
-                                     req_body='test-req_body',
-                                     on_error=self.button_on_error)
-            self.button.text = 'run_url_request_setup_device: UrlRequest done'
+            self.button.text = 'msg sent, connection closed'
         except Exception as e:
             self.button.text = insert_newlines(traceback.format_exc())
 
     def build(self):
         self.button = Button(text="start",
-                             on_release=self.run_url_request_setup_device,
+                             on_release=self.setup_device,
                              size_hint=(.5, .5),
                              pos_hint={'center_x': .5, 'center_y': .5})
         return self.button
