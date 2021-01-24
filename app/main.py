@@ -47,9 +47,13 @@ class MainApp(App):
         return res
 
     def update_button_text_with_urlrequest_result(self, *args):
-        self.result = self.run_url_request_setup_device()
-        self.debug_str = insert_newlines(self.result)
-        self.button.text = self.debug_str
+        try:
+            self.result = self.run_url_request_setup_device()
+            self.debug_str = insert_newlines(self.result)
+            self.button.text = self.debug_str
+        except Exception as e:
+            self.button.text = traceback.format_exc()
+
 
     def build(self):
         self.debug_str = insert_newlines(self.debug_str)
