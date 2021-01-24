@@ -16,8 +16,8 @@ def insert_newlines(string, every=32):
 
 class MainApp(App):
     debug_str = 'init'
-    result = 'init2'
     button = None
+    result = None
 
     def do_nothing(self):
         pass
@@ -25,10 +25,8 @@ class MainApp(App):
     def button_on_error(self,*args):
         self.button.text = 'connection error'
 
-
-    # parse in wifiname, wifipassword (with space atm crash), add encryption
     def run_url_request_setup_device(self, *args):
-        res = 'init'
+        self.button.text = 'run_url_request_setup_device: init'
         try:
             headers = {'Content-type': 'application/x-www-form-urlencoded',
                        'Accept': 'text/plain'}
@@ -41,26 +39,17 @@ class MainApp(App):
                                      req_body='test-req_body',
                                      on_error=self.button_on_error)
                                      #req_headers=headers)
-            res = 'ok'
-        except Exception as e:
-            res = traceback.format_exc()
-        return res
+            self.button.text = 'run_url_request_setup_device: UrlRequest done'
 
-    def update_button_text_with_urlrequest_result(self, *args):
-        try:
-            self.result = self.run_url_request_setup_device()
-            self.debug_str = insert_newlines(self.result)
-            self.button.text = self.debug_str
+            print(str(self.result))
         except Exception as e:
-            self.button.text = traceback.format_exc()
-
+            self.button.text = insert_newlines(traceback.format_exc())
 
     def build(self):
-        self.debug_str = insert_newlines(self.debug_str)
-        self.button = Button(text=self.debug_str,
-                        on_release=self.update_button_text_with_urlrequest_result,
-                        size_hint=(.5, .5),
-                        pos_hint={'center_x': .5, 'center_y': .5})
+        self.button = Button(text="start",
+                             on_release=self.run_url_request_setup_device,
+                             size_hint=(.5, .5),
+                             pos_hint={'center_x': .5, 'center_y': .5})
         return self.button
 
 
