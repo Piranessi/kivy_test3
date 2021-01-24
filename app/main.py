@@ -38,15 +38,7 @@ class MainApp(App):
         except Exception as e:
             res = traceback.format_exc()
 
-
-
     def build(self):
-        # try:
-        #     self.run_url_request()
-        #     self.debug_str = str(self.result)
-        # except Exception as e:
-        #     self.debug_str = traceback.format_exc()
-
         self.debug_str = insert_newlines(self.debug_str)
         button = Button(text=self.debug_str,
                         on_release=self.run_url_request_setup_device,
