@@ -18,17 +18,27 @@ class MainApp(App):
     debug_str = 'init'
     result = None
 
+    def do_nothing(self):
+        pass
+
     # parse in wifiname, wifipassword (with space atm crash), add encryption
     def run_url_request_setup_device(self, *args):
-        wifi_name = r'test_wifi'
-        wifi_password = r"test_password"
-        device_address = r'http://192.168.4.1:80/'
-        url_str = device_address + '?wifi_name=' + wifi_name  + r"&wifi_password=" + wifi_password
-        self.result = UrlRequest(url=url_str,
-                                 on_success=print('Instalacja urzadzenia zakonczona.'),
-                                 req_body='test-req_body',
-                                 on_error='Sprawdz polaczenie wifi z urzadzeniem.',
-                                 req_header='test')
+        res = 'init'
+        try:
+            wifi_name = r'test_wifi'
+            wifi_password = r"test_password"
+            device_address = r'http://192.168.4.1:80/'
+            url_str = device_address + '?wifi_name=' + wifi_name + r"&wifi_password=" + wifi_password
+            self.result = UrlRequest(url=url_str,
+                                     on_success=print('Instalacja urzadzenia zakonczona.'),
+                                     req_body='test-req_body',
+                                     on_error='test____',
+                                     req_header='test_req_header')
+            res = 'ok'
+        except Exception as e:
+            res = traceback.format_exc()
+
+
 
     def build(self):
         # try:
