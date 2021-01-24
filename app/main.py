@@ -35,13 +35,11 @@ class MainApp(App):
             device_address = r'http://192.168.4.1:80/'
             url_str = device_address + '?wifi_name=' + wifi_name + r"&wifi_password=" + wifi_password
             self.result = UrlRequest(url=url_str,
-                                     on_success=print('Instalacja urzadzenia zakonczona.'),
+                                     on_success=print('on_success.'),
                                      req_body='test-req_body',
                                      on_error=self.button_on_error)
                                      #req_headers=headers)
             self.button.text = 'run_url_request_setup_device: UrlRequest done'
-
-            print(str(self.result))
         except Exception as e:
             self.button.text = insert_newlines(traceback.format_exc())
 
