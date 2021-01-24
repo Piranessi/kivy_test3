@@ -25,7 +25,7 @@ class MainApp(App):
 
     def setup_device(self, *args):
         self.button.text = 'setup: init'
-        msg = 'test msg'
+        msg = 'test msg\n'
         encoded_msg = bytes(msg, "utf-8")
         s = socket.socket()
         ip = '192.168.4.1'
