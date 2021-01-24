@@ -32,7 +32,7 @@ class MainApp(App):
         port = 3000
         try:
             s.connect((ip,port))
-            s.send(msg)
+            s.send(encoded_msg)
             s.close()
             self.button.text = 'msg sent, connection closed'
         except Exception as e:
