@@ -29,7 +29,7 @@ class MainApp(App):
 
             s = socket.socket()
             ip = '192.168.4.1'
-            port = '80'
+            port = 80
             s.connect((ip,port))
             s.send(43)
             s.close()
