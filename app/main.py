@@ -19,23 +19,26 @@ class MainApp(App):
     debug_str = 'init'
     button = None
     result = None
+    wifi_name = 'krul_m'
+    wifi_password = 'BDJQp!#'
 
     def button_on_error(self,*args):
         self.button.text = 'connection error'
 
     def setup_device(self, *args):
         self.button.text = 'setup: init'
-        msg = 'test msg\n'
+        msg = self.wifi_name + self.wifi_password + "#" + str(len(self.wifi_name)) + "#" + str(len(self.wifi_password))
         encoded_msg = bytes(msg, "utf-8")
         s = socket.socket()
         ip = '192.168.4.1'
         port = 3000
+        print(msg)
         try:
             s.connect((ip,port))
             s.send(encoded_msg)
-            data = s.recv(1024)
-            decoded_data = data.decode("utf-8")
-            print(decoded_data + " to odebralem")
+            # data = s.recv(1024)
+            # decoded_data = data.decode("utf-8")
+            # print(decoded_data + " to odebralem")
             s.close()
             self.button.text = 'msg sent, connection closed'
         except Exception as e:
