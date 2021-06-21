@@ -55,8 +55,8 @@ class MainApp(App):
 
 
         cfg_dict = {
-            'wifi_ssid': 'Zyku',
-            'wifi_password': 'jarecki1!'
+            'wifi_ssid': 'wifi_ssid',
+            'wifi_password': 'wifi_password!'
         }
         cfg_dict_json = json.dumps(cfg_dict)
         print('len:', len(cfg_dict_json))
